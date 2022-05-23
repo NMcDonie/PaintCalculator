@@ -23,10 +23,11 @@ public static void loadCalc(){
     double hei = Double.valueOf(scan.nextLine());
 
     System.out.println("The final cost of painting a wall that's " + len + " long, " + wid + " wide and " + hei + " high is: " + cost(len, wid, hei) + " pounds.");
-    System.out.println("Would you like to measure another wall?");
+    System.out.println("Would you like to measure another wall? 1 = Yes, 2 = No.");
     double answer = Double.valueOf(scan.nextLine());
 
     //Below checks if the user wants to restart the process.
+
 
     if (answer == 1) {
         System.out.println("The process will now restart...");
@@ -52,9 +53,9 @@ public static void loadCalc(){
     }
 
 
-    public static double quantity(double tArea){
+    public static double quantity(double tArea) {
 
-       //Below finds out quantity of paint needed.
+        //Below finds out quantity of paint needed.
 
         Scanner scan = new Scanner(System.in);
         double sqfPG = 350; //Square foot per gallon I think.
@@ -72,7 +73,22 @@ public static void loadCalc(){
         double doorCount = Double.valueOf(scan.nextLine());
         doorCount = doorCount * 0.72; //average UK door size.
 
-        return tArea - socketCount - windowCount - doorCount/ sqfPG;
+
+        System.out.println("Is there any other objects that would need to be measured?");
+        double answer = Double.valueOf(scan.nextLine());
+        double objArea = 0;
+        if (answer == 1) {
+            System.out.println("Please enter the height of the object: ");
+            double height = Double.valueOf(scan.nextLine());
+            System.out.println("Please enter the width of the object: ");
+            double width = Double.valueOf(scan.nextLine());
+            objArea = height * width;
+        } else {
+            System.out.println("The program will now close.");
+        }
+
+
+        return tArea - socketCount - windowCount - doorCount - objArea / sqfPG;
     }
 
 
